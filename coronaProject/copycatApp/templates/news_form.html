@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="김예지,김하은">
+    <meta name="description" content="구루1 해커톤에서 만들고 있는 코로나19 사이트">
+    <meta name="keywords" content="클론코딩, 구루1, 웹페이지">
+    <title>코로나바이러스감염증-19 > 카드뉴스</title>
+    <link rel="icon" href="http://ncov.mohw.go.kr/static/image/header/shim.png" type="image/x-icon">
+
+    <style>
+    /* 레이아웃 */
+                @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+                html{margin: -3px ;padding: 0;height: 100%}
+
+                body{
+                    font-size:16px;
+                    /*width: 100%;
+                    height: 100%;*/
+                    font-weight: 400;
+                    letter-spacing: -0.024em;
+                    overflow-x: hidden;
+                    margin:3px;
+                    padding: 0;
+
+                }
+                
+                aside{padding-left:30px; line-height: 600px; margin-top: 10px;}
+                .header_lay{
+                    width: 100%;
+                    height: 6.2%;
+                    background-color: white;
+                    font-family: 'Noto Sans KR', sans-serif;
+                }
+
+                .menubar_lay{
+                    width: 100%;height: 6%;background-color: skyblue;
+                    font-family: 'Noto Sans KR', sans-serif;
+                }
+
+                /* 게시판 */
+                .one{
+                    width: 100%;
+                    height: 2300px;
+                    margin-top: 40px;
+                    margin-bottom: 100px;
+                    box-sizing: border-box;
+                    background: white;
+                    padding: 30px;
+                }     
+
+                .report{
+                    width: 1180px;
+                    height: 1100px;
+                    float: middle;
+                    /*margin-bottom: 10px;*/
+                    
+                    margin-left: 235px;
+                    margin-right: 230px;
+                }
+
+                .image{
+                    text-align: center;
+                    border-color: black;
+                    margin-top: 1%;
+                    margin-bottom: 5px;
+                }
+
+                .two{
+                    width: 1150px;
+                    height: 300px;
+                     padding-left: 5px;
+                    box-sizing: border-box;
+                    /*background: orange;*/
+                    margin-left: 250px;
+                    margin-right: 260px;
+                }
+                
+                /*이름 수정*/
+                .footer_lay{
+                    width: 100%;
+                    height: 130px;
+                    position: absolute;
+                    background-color: #708090;
+                    padding-bottom: -100px;
+                }
+                 
+    /* 전체적용 */
+                div,span,p,a,em,strong,i,ul,li, h1, form, label{margin:0;padding:0;border:0;font-size:100%;font:inherit;}
+                ul{list-style:none;}
+                *,::after,::before{box-sizing:inherit;}
+                a,a:focus,a:hover{text-decoration:none;}
+                a{cursor:pointer;}
+                div,span,h3,p,a,em,strong,i,ul,li,fieldset,legend,table,caption,tbody,thead,tr,th,td{margin:0;padding:0;border:0;font-size:100%;font:inherit;}
+                table{border-collapse:collapse;border-spacing:0;}
+                .hdn{position:absolute;left:0;top:0;width:0;height:0;overflow:hidden;}
+                
+
+                ul{list-style:none;}
+                *,::after,::before{box-sizing:inherit;}
+                a,a:focus,a:hover{text-decoration:none;}
+                a,input[type="submit"]{cursor:pointer;}
+                input[type="text"],label{display:inline-block;margin:0;padding:0;font-family:'Noto Sans KR', '맑은고딕', 'Malgun Gothic', '돋움', 'Dotum', sans-serif;font-weight:400;letter-spacing:-0.024em;}
+                input[type="text"]{width:100%;transition:border-color .15s ease-in-out, background-color .15s ease-in-out;border:1px solid rgba(0,0,0,0.16);}
+                    
+    /* footer */
+                .footer{
+                    border-top:3px solid #333;
+                    background:#f8f8f8;
+                }
+
+                .footer .f_top{
+                    border-bottom:1px solid #ddd;
+                }
+                .footer .f_top > div::after{
+                    display:block;content:'';
+                    clear:both;
+                }
+                .footer .f_bottom > div::after{display:block;content:'';clear:both;}
+                .footer .ico_window{display:none;}
+
+                .footer .f_top > div{
+                    width:1180px;
+                    margin:0 auto;}
+                .footer .f_top .ft_left{
+                    float:left;
+                }
+                .footer .f_bottom > div{
+                    width:1180px;
+                    margin:0 auto;
+                    padding:24px 0 48px 0;
+                }
+                .footer .f_bottom .fb_left{
+                    float:left;
+                }
+                .footer .f_bottom .fb_right{
+                    float:right;
+                }
+
+                .f_relate > ul::after{
+                    display:block;content:'';
+                    clear:both;}
+                .f_relate > ul > li{
+                    float:left;
+                    margin-right:16px;
+                }
+                .f_relate > ul > li > div{
+                    min-width:200px;
+                }
+                .f_relate > ul > li > a{
+                    padding-right:24px;
+                }
+                .f_relate > ul > li{
+                    position:relative;padding:12px 0;
+                }
+                .f_relate > ul > li > a{
+                    position:relative;display:block;font-size:0;line-height:0;
+                }
+                .f_relate > ul > li > a > span,.f_relate > ul > li > a > em{
+                    display:inline-block;font-size:13px;line-height:14px;letter-spacing:-0.048em;color:#000;padding:5px 0;padding-right:4px;
+                }
+
+                /*세부메뉴*/
+                .sub_menu{
+                    position:absolute;bottom:36px; z-index:900; display:none;
+                } 
+                
+                .sub_menu > ul{
+                    background:#fff;border:1px solid #333;max-height:332px;overflow-y:auto;}
+                .submenu > ul > li{
+                    border-bottom:1px solid #eee;
+                }
+                .submenu > ul > li:last-child{
+                    border-bottom:0;
+                }
+                .f_relate > ul > li > div > ul > li > a{
+                    display:block;font-size:13px;line-height:16px;letter-spacing:-0.048em;color:#666;padding:8px 16px;
+                }
+
+                .f_relate > ul > li.open div{
+                    display:block;
+                }
+
+                /*바로가기 옆 화살표 */
+                .f_relate > ul > li > a::after{
+                    content:'';position:absolute;right:0;top:50%;margin-top:-12px;display:block;width:24px;height:24px;transition:transform .24s ease-out;background:url(http://ncov.mohw.go.kr/static/image/footer/fr_arrow_up.png) no-repeat center center;
+                }
+                .f_relate > ul > li.open > a::after{
+                    transform:rotate(-180deg);
+                }
+
+                .f_navigation ul{font-size:0;line-height:0;}
+                .f_navigation ul li{display:inline-block;font-size:13px;line-height:14px;letter-spacing:-0.048em;color:#222; border-right:1px solid #ddd;padding:0 12px;}
+                .f_navigation ul li a{color:#222;}
+                .f_navigation .txt_private{color:#405985;font-weight:bold;}
+                .f_navigation ul li:first-child{padding-left:0;}
+                .f_navigation ul li:last-child{padding-right:0;border-right:0;}
+
+                .f_copyright{margin-top:12px;}
+                .f_copyright p{display:block;font-size:12px;line-height:19px;color:#666;}
+
+                /*open 아이콘*/
+                .f_open{display:inline-block;margin-top:-10px;height:40px;width:56px;background:url(http://ncov.mohw.go.kr/static/image/footer/mark_open.png) no-repeat 0 center;text-align:right;}
+                .f_open > a{display:block;height:inherit;}
+                @media (max-width:767px){
+                .f_open{margin-top:0;}
+                }
+                
+    /* navbar */
+                a,input[type="submit"]{cursor:pointer;}
+                input[type="text"],label{display:inline-block;margin:0;padding:0;font-family:'Noto Sans KR', '맑은고딕', 'Malgun Gothic', '돋움', 'Dotum', sans-serif;font-weight:400;letter-spacing:-0.024em;}
+                input[type="text"]{width:100%;transition:border-color .15s ease-in-out, background-color .15s ease-in-out;border:1px solid rgba(0,0,0,0.16);}
+
+                .gnb > ul::after{display:block;content:'';clear:both;}
+                .gnb > ul > li{float:left;margin-bottom:-1px;}
+                .gnb > ul > li > a{position:relative;display:block;padding:20px 15px;font-weight:500;font-size:18px;line-height:20px;letter-spacing:-0.07em;color:#fff;}
+                .gnb > ul > li > a::after{display:block;content:'';width:100%;height:5px;background:#0d427f;position:absolute;left:0;bottom:1px;transform:scaleX(0);transform-origin:right bottom;transition:transform 0.24s ease-in-out;}
+                .gnb > ul > li.on > a{color:#fff;}
+                .gnb > ul > li.on > a::after{transform:scaleX(1);}
+                .gnb.subfix .g_fixsub{display:none;position:absolute;left:0;width:100%;height:41px;padding:5px 0;background-color:#f2f7fa;border-bottom:1px solid #bbcadb;}
+                .gnb.subfix .g_fixsub > div{width:1140px;margin:0 auto;}
+                .gnb.subfix .g_fixsub > div > ul{display:inline-block;}
+                .gnb.subfix .g_fixsub > div > ul > li{display:inline-block;margin-right:20px;}
+                .gnb.subfix .g_fixsub > div > ul > li a{position:relative;display:inline-block;font-size:14px;font-weight:500;line-height:30px;color:#555;}
+                .gnb.subfix .g_fixsub > div > ul > li a::before{content:"·";display:inline-block;margin-right:6px;font-size:13px;font-weight:600;line-height:30px;color:#555;}
+                .gnb.subfix .g_fixsub > div > ul > li a::after{content:"";position:absolute;left:6px;bottom:3px;}
+                .gnb.subfix .g_fixsub > div > ul > li.on a{color:#0d427e;}
+                .gnb.subfix .g_fixsub > div > ul > li.on a::before{color:#0d427e;}
+                .gnb.subfix .g_fixsub > div > ul > li.on a::after{display:block;width:100%;height:0px;border-bottom:1px dotted #0d427e;}
+                .gnb.subfix .g_fixsub > div > ul > li a:hover,.gnb.subfix .g_fixsub > div > ul > li a:focus{color:#0d427e;}
+                .gnb.subfix .g_fixsub > div > ul > li a:hover::after,.gnb.subfix .g_fixsub > div > ul > li a:focus::after{display:block;width:100%;height:0px;border-bottom:1px dotted #0d427e;}
+                .gnb.subfix > ul > li.on .g_fixsub{z-index:14;display:block;}
+                .gnb.subfix > ul > li:nth-child(1) .g_fixsub > div > ul{margin-left:0px;}
+                .gnb.subfix > ul > li:nth-child(2) .g_fixsub > div > ul{margin-left:0px;}
+                .gnb.subfix > ul > li:nth-child(3) .g_fixsub > div > ul{margin-left:0px;}
+                .gnb.subfix > ul > li:nth-child(4) .g_fixsub > div > ul{margin-left:280px;}
+                .gnb.subfix > ul > li:nth-child(5) .g_fixsub > div > ul{margin-left:200px;}
+                .gnb.subfix > ul > li:nth-child(6) .g_fixsub > div > ul{margin-left:50px;}
+                .gnb.subfix > ul > li:nth-child(7) .g_fixsub > div > ul{margin-left:150px;}
+                .gnb.subfix > ul > li:nth-child(8) .g_fixsub > div > ul{margin-left:580px;}
+                .global_search{position:absolute;background:#233558;padding:15px;z-index:910;opacity:0;transform:translate(0,-25%);transition:opacity .24s ease-out, transform .24s ease-out;display:none;}
+                .global_search .n_search{position:relative;padding-right:10px;width:100%;height:40px;}
+                .global_search .btn_close{display:block;position:absolute;right:0;top:0;background:url(http://ncov.mohw.go.kr/static/image/header/header_icon.png) no-repeat #4f5569 -50px -50px;}
+                .global_search .n_search input[type="text"]{width:100%;color:#333;}
+                .global_search .n_search .btn_search{top:0;right:10px;background-color:#405985;}
+                
+                /*검색어*/
+                #searchTerm{
+                    padding: 4px 10px;
+                    margin-right: 36px;
+                    width: 190px;
+                    height: 28px;
+                    border-color: #e7e7e7;
+                    border-top: 0;
+                    border-bottom: 0;
+                    font-size: 14px;
+                }
+
+    /* top */
+                .shim{
+                    font-family: sans-serif;
+                }
+                
+                .ico_window::after{
+                    left:0;
+                    top:0;
+                    width:10px;
+                    height:10px;
+                    border:1px solid #666;}
+                .ico_window{position:relative;display:inline-block;width:12px;height:12px;vertical-align:middle;margin-left:4px;}
+                .ico_window::before,.ico_window::after{display:block;content:'';position:absolute; box-sizing: border-box;}
+                .ico_window::before{right:0;bottom:0;width:10px;height:10px;border:1px solid #666;border-top:0;border-left:0;opacity:0.48;}
+                .ico_window::after{left:0;top:0;width:10px;height:10px;border:1px solid #666;}
+
+                .top{border-bottom:1px solid #e7e7e7;}
+                .top > div{width:1180px;margin:0 auto;}
+                .top > div::after,.top .n_right ul::after{display:block;content:'';clear:both;}
+                .top .n_left{float:left;}
+                .top .n_right{float:right;}
+                .top .n_left .corona_h1{font-size:23px;font-weight:500;margin-top:11px;}
+                .top .n_left .corona_h1 span{font-size:18px;}
+                .top .n_left .corona_h1 a{color:#000;}
+                .top .n_right .shim{float:left;padding:12px 0;margin-left:12px;}
+                .top .n_right .shim li{float:left;padding:0 10px;}
+                .top .n_right .shim li a{display:block;padding:0 0 0 26px;height:40px;line-height:40px;font-size:15px;font-weight:400;letter-spacing:-0.07em;color:#000;background:url(http://ncov.mohw.go.kr/static/image/header/shim.png) no-repeat 0 center;background-size:20px;}
+                .top .n_right .sns{float:left;display:table;padding-left:7px;margin-top:19px;height:24px;}
+                .top .n_right .sns > li{display:table-cell;vertical-align:middle;text-align:center;}
+                .top .n_right .sns > li > a{display:block;margin:0 2px;width:24px;height:24px;line-height:40px;font-size:0;color:transparent;border-radius:50%;overflow:hidden;background-color:#405985;border:1px solid #dcdcdc;}
+                .top .n_right .sns > li > a i{display:none;}
+                .top .n_right .sns > li.facebook > a{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sns_icon_face.png) no-repeat center center;}
+                .top .n_right .sns > li.youtube > a{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sns_icon_you.png) no-repeat center center;}
+                .top .n_right .sns > li.post > a{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sns_icon_naver.png) no-repeat center center;border:1px solid #f3f3f3;}
+                .top .n_right .sns > li.twitter > a{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sns_icon_tw.png) no-repeat center center;}
+                .top .n_right .country{float:left;display:table;padding-left:7px;margin-top:19px;height:24px;}
+                .top .n_right .country > li{display:table-cell;padding-left:7px;vertical-align:middle;text-align:center;}
+                .top .n_right .country > li::before{content:"";display:inline-block;width:4px;height:4px;margin-left:6px;margin-right:5px;line-height:28px;background-color:#8994a8;border-radius:100%;vertical-align:middle;}
+                .top .n_right .country > li:first-child{padding-left:0;}
+                .top .n_right .country > li > a{font-size:13px;line-height:24px;color:#444;}
+                .top .n_right .country > li > a  i{display:none;}
+                .top .n_right .country > li:nth-child(2) > a{letter-spacing:-0.03em;font-family:'Dotum';color:#555;}
+                .header{position:relative;border-bottom:1px solid #ddd;background-color:#0b9bc9;}
+                .header > div::after{display:block;content:'';clear:both;}
+                .header .logo{display:block;}
+                .header .logo a{display:block;font-size:20px;font-weight:500;color:#fff;}
+                .header .logo span{font-size:14px;}
+                .header .t_top_other{display:block;margin-top:24px;}
+                .header .t_sns{float:left;display:table;margin-left:7px;height:24px;}
+                .header .t_sns > li{display:table-cell;vertical-align:middle;text-align:center;}
+                .header .t_sns > li > a{display:block;margin:0 2px;width:24px;height:24px;line-height:40px;font-size:0;color:transparent;border-radius:50%;overflow:hidden;background-color:#405985;border:1px solid #dcdcdc;}
+                .header .t_sns > li > a i{display:none;}
+                .header .t_sns > li.facebook > a{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sns_icon_face.png) no-repeat center center;}
+                .header .t_sns > li.youtube > a{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sns_icon_you.png) no-repeat center center;}
+                .header .t_sns > li.post > a{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sns_icon_naver.png) no-repeat center center;border:1px solid #f3f3f3;}
+                .header .t_sns > li.twitter > a{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sns_icon_tw.png) no-repeat center center;}
+                .header .t_country{float:left;display:table;padding-left:7px;height:24px;}
+                .header .t_country > li{display:table-cell;padding-left:7px;vertical-align:middle;text-align:center;}
+                .header .t_country > li::before{content:"";display:inline-block;width:4px;height:4px;margin-left:6px;margin-right:5px;line-height:28px;background-color:#c8d8f6;border-radius:100%;vertical-align:middle;}
+                .header .t_country > li:first-child{padding-left:0;}
+                .header .t_country > li > a{font-size:13px;line-height:24px;color:#fff;}
+                .header .t_country > li > a  i{display:none;}
+                .header .t_country > li:nth-child(2) > a{letter-spacing:-0.03em;font-family:'Dotum';}
+                .header .t_camp{float:left;}
+                .header .t_camp > li{float:left;padding-left:10px;}
+                .header .t_camp > li::before{content:"";display:inline-block;width:4px;height:4px;margin-left:6px;margin-right:5px;line-height:28px;background-color:#c8d8f6;border-radius:100%;vertical-align:middle;}
+                .header .t_camp > li > a{font-size:14px;line-height:24px;color:#fff;}
+                .header .t_camp > li > a  i{display:none;}
+                .header .btn_global_search,.header .btn_global_menu{width:32px;height:32px;background-image:url(http://ncov.mohw.go.kr/static/image/header/header_icon.png);background-repeat:no-repeat;}
+                .header .btn_global_menu{display:block;}
+                .header .btn_global_search{background-position:0px 0px;border-radius:100%;}
+                .header .btn_global_menu{background-position:-50px 0px;}
+                .header .p_search{position:relative;}
+                .header .n_search input[type="submit"]{margin:0;padding:0;border:0 none;}
+                .header .n_search input[type="submit"]:hover{cursor:pointer;}
+                .header .n_search .btn_search{display:block;position:absolute;right:0;top:12px;width:36px;height:36px;background:url(http://ncov.mohw.go.kr/static/image/header/ico_search.png) no-repeat center;background-color:#0b7599;color:transparent;}
+               
+                .header > div{width:1180px;height:auto;margin:0 auto;}
+                .header .h_left{float:left;}
+                .header .h_right{float:right;width:100%;}
+                .header .logo{float:left;margin-top:16px;display:none;}
+                .header .logo a{width:148px;height:55px;}
+                .header .t_top_other{display:none;}
+                .header .gnb,.header .btn_global_search,.header .btn_global_menu{float:left;}
+                .header .btn_global_search,.header .btn_global_menu{margin:16px;display:none;}
+                .header .btn_global_search{display:none;}
+                .header .p_search{float:right;padding-top:12px;}
+                
+                (min-width:768px) and (max-width:1179px){
+                .header > div{height:72px;}
+                .header .logo{position:absolute;left:60px;top:0;margin-top:24px;}
+                .header .logo a{height:40px;}
+                .header .t_top_other{position:absolute;right:60px;top:0;}
+                .header .t_sns > li > a{border-color:transparent;}
+                .header .t_sns > li.facebook > a{border-color:#748dbc;}
+                .header .btn_global_search,.header .btn_global_menu{position:absolute;top:0;margin:12px;}
+                .header .btn_global_search{right:0;}
+                .header .btn_global_menu{left:0;}
+                .header .btn_global_search{display:block;}
+                .header .p_search{display:none;}
+                }
+                (max-width:767px){
+                .header{background-color:#01348d;}
+                .header > div{height:auto;}
+                .header .logo{padding:15px 0 5px 0;text-align:center;}
+                .header .logo a{display:inline-block;margin-left:10px;height:36px;line-height:30px;}
+                .header .logo a span{display:none;}
+                .header .t_top_other{position:relative;width:100%;height:auto;margin-top:0;padding:0;background-color:#405985;overflow:hidden;}
+                .header .t_sns{float:left;margin-left:0;padding:5px 12px 5px 0;}
+                .header .t_sns > li > a{width:29px;height:29px;margin:0 3px;border-color:transparent;}
+                .header .t_sns > li.facebook > a{border-color:#748dbc;}
+                .header .t_country{position:absolute;right:0;top:0;height:40px;padding-right:15px;}
+                .header .t_country > li{padding-left:15px;}
+                .header .t_country > li:first-child{padding-left:0;}
+                .header .t_country > li > a{line-height:40px;font-size:14px;}
+                .header .t_camp{clear:both;width:100%;display:table;height:32px;border-top:1px solid #0e91bb;background-color:#0b9bc9;}
+                .header .t_camp > li{float:none;display:table-cell;padding-left:0;width:50%;vertical-align:middle;text-align:center;}
+                .header .t_camp > li:first-child{border-right:1px solid #23b8e9;}
+                .header .t_camp > li::before{display:none;}
+                .header .btn_global_search,.header .btn_global_menu{position:absolute;top:0;margin:12px;}
+                .header .btn_global_search{right:0;}
+                .header .btn_global_menu{left:0;}
+                .header .btn_global_search{display:block;}
+                .header .p_search{display:none;}
+                }
+                .gnb > ul::after{display:block;content:'';clear:both;}
+                .gnb > ul > li{float:left;margin-bottom:-1px;}
+                .gnb > ul > li > a{position:relative;display:block;padding:20px 15px;font-weight:500;font-size:18px;line-height:20px;letter-spacing:-0.07em;color:#fff;}
+
+    /* news_form */
+        .sub_top .st_navigation ul::after{display:block;content:'';clear:both;}
+        .sub_top .st_navigation ul{padding:4px 0;}
+        .sub_top .st_navigation ul li{float:left;padding:2px 8px 2px 12px;background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sub_tb_icon.png) no-repeat -40px -15px;}
+        .sub_top .st_navigation ul li:first-child{background:none;padding-left:0;padding-right:4px;}
+        .sub_top .st_navigation ul li a{display:block;font-size:14px;line-height:22px;color:#666;}
+        .sub_top .st_navigation ul li:first-child a{width:20px;height:22px;background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sub_tb_icon.png) no-repeat 2px 2px;}
+        .sub_top .st_navigation ul li:last-child a{color:#405985;border-bottom:1px dotted #405985;margin-bottom:-1px;font-weight:bold;}
+        .sub_top .st_title{padding:12px 0;border-bottom:2px solid #000;}
+        .sub_top .st_title > div{padding:8px 0;}
+        .sub_top .st_title::after{display:block;content:'';clear:both;}
+        .sub_top .st_title *{vertical-align:top;}
+        .sub_top .st_title h3{display:block;font-weight:500;font-size:32px;line-height:40px;letter-spacing:-0.08em;color:#333;}
+        /*! CSS Used from: http://ncov.mohw.go.kr/static/css/co_component.css?ver=20200702 */
+        .s_btn{font-size:0;line-height:0;text-align:center;margin-top:32px; margin-bottom:32px;}
+        .s_btn::after{display:block;content:'';clear:both;}
+        .board_view .bv_top .bv_ttl{border-bottom:1px solid #d7d7d7;padding:25px 20px;}
+        .board_view .bv_top .bv_ttl *{vertical-align:middle;}
+        .board_view .bv_top .bv_ttl h4{display:inline;font-size:16px;line-height:24px;font-weight:500;letter-spacing:-0.048em;color:#000;word-wrap:break-word;word-break:keep-all;}
+        .board_view .bv_top .bv_category{border-bottom:1px solid #d7d7d7;font-size:0;line-height:0;}
+        .board_view .bv_top .bv_category ul{padding:12px 20px;}
+        .board_view .bv_top .bv_category ul li{position:relative;display:inline-block;padding:0 12px 0 8px;}
+        .board_view .bv_top .bv_category ul li::before{display:block;content:'';width:2px;height:2px;border-radius:1px;background:#222;position:absolute;left:0;top:10px;}
+        .board_view .bv_top .bv_category ul li *{vertical-align:middle;}
+        .board_view .bv_top .bv_category ul li span{display:inline-block;font-size:14px;line-height:22px;color:#444;padding-right:4px;}
+        .board_view .bv_top .bv_category ul li .bvc_ttl{color:#000;}
+        .board_view .bv_content{padding:12px 20px;border-bottom:1px solid #d7d7d7;position:relative;word-wrap:break-word;word-break:keep-all;}
+        .board_view .bv_content .bvc_txt p{display:block;font-size:14px;line-height:22px;color:#333;word-wrap:break-word;word-break:keep-all;padding:6px 0;}
+        .board_view .bv_content .bvc_txt img{display:block;width:100%!important;height:100%!important;max-width:100%;margin:6px auto;}
+        
+        .page_skip{border-top:1px solid #aaa;border-bottom:1px solid #aaa;margin-top:32px;}
+        .page_skip ul li{position:relative;}
+        .page_skip ul li:first-child{border-bottom:1px solid #dedfe4;}
+        .page_skip .ps_ttl{display:block;position:absolute;left:0;top:0;font-size:14px;line-height:22px;padding:12px 20px;text-align:center;}
+        .page_skip .ps_ttl::after{content:'';display:inline-block;width:18px;height:18px;margin:2px;margin-left:4px;vertical-align:top;}
+        .page_skip ul li:first-child .ps_ttl::after{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sub_cmn_icon.png) no-repeat -80px 0;}
+        .page_skip ul li:last-child .ps_ttl::after{background:url(http://ncov.mohw.go.kr/static/image/sub_cmn/sub_cmn_icon.png) no-repeat -100px 0;}
+        .page_skip .ps_detail{display:block;padding:12px 20px 12px 96px;font-size:14px;line-height:22px;color:#666;word-wrap:break-word;word-break:keep-all;}
+        .page_skip .ps_detail a{display:block;color:#000;}
+        .page_skip .ps_detail a:hover{color:##580078;}
+        .tag{display:inline-block;border-radius:2px;border:1px solid transparent;}
+        .tag_lg{font-size:18px;line-height:26px;padding:6px 32px;}
+        .tag_black{background:#666572;color:#fff;}
+        .copykogl{width:100%;padding:20px;margin-top:24px;background-color:#f8fbff;}
+        .copykogl .copyimg{text-align:center;background-repeat:no-repeat;background-position:0 0;}
+        .copykogl .copytext{padding-left:20px;font-size:14px;line-height:20px;word-break:keep-all;}
+        .copykogl .copytext strong{font-weight:600;color:#333;}
+        .copykogl.type4 .copyimg{width:219px;height:55px;margin-right:20px;background-image:url(http://ncov.mohw.go.kr/static/image/content/copy_type4_img.png);}
+        .bvc_txt{padding:0 0 2px 0;}
+        .bvc_txt p{display:block;font-size:15px;line-height:23px;letter-spacing:-0.06em;padding-bottom:10px;}
+        .bvc_txt p img{display:block;width:100%;}
+    
+
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header_lay">
+        <div class="top">
+            <div>
+                <div class="n_left">
+                    <h1 class="corona_h1"><a href="{% url 'main' %}">코로나바이러스감염증-19<span>(COVID-19)</span></a></h1>
+                </div>
+                <div class="n_right">
+                    <ul class="shim">
+                        <li><a href="http://ncv.kdca.go.kr/" target="_blank" title="새창">코로나19 백신 및 예방접종<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                        <li><a href="http://www.mohw.go.kr/" target="_blank" title="새창">중앙사고수습본부<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                        <li><a href="http://www.kdca.go.kr/" target="_blank" title="새창">중앙방역대책본부<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                    </ul>
+                    <ul class="sns">
+                        <li class="facebook"><a href="http://www.facebook.com/koreadca" target="_blank" title="질병관리청 페이스북으로 새창">페이스북<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                        <li class="youtube"><a href="https://youtube.com/channel/UCa7-3Zvxg-5Rfxgu3RQY_gw" target="_blank" title="질병관리청 유튜브 새창">유튜브<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                        <li class="post"><a href="https://post.naver.com/my.nhn?memberNo=20182790" target="_blank" title="질병관리청 포스트 새창">포스트<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                        <li class="twitter"><a href="http://twitter.com/koreadca" target="_blank" title="질병관리청 트위터 새창">트위터<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                    </ul>
+                     <ul class="country">
+                        {% if user.is_authenticated %} <!--만약 로그인 되어있으면 -->
+                            {{user.username}}님
+                            <li><a href="{% url 'logout' %}">로그아웃<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                        {% else %} <!--로그인 안되어있으면-->
+                            <li><a href="{% url 'signin' %}">로그인<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+   
+   <!-- 메뉴바(navbar) -->
+    <div class="menubar_lay"> 
+        <div id="header" class="header">
+                <div>
+                    <div class="h_right">
+                        <div id="gnb" class="gnb subfix t_dp_n m_dp_n">
+                            <ul>
+                                <li><a href="#">바로알기</a>
+                                    <div class="g_fixsub" style="display: none;"><div>
+                                        <ul>
+                                            <li><a href="#">코로나19 란?</a></li>
+                                            <li><a href="#">대한민국 방역체계</a></li>
+                                            <li><a href="#">환자치료 및 관리</a></li>
+                                            <li><a href="#">예방 조치 안내</a></li>                                        
+                                        </ul>
+                                    </div></div>                            
+                                </li>
+                                <li class=""><a href="#">발생동향</a>
+                                    <div class="g_fixsub" style="display: none;"><div>
+                                        <ul>
+                                            <li><a href="#">국내 발생 현황</a></li>
+                                            <li><a href="#">국외 발생 현황</a></li>
+                                            <li><a href="#">시도별 발생동향</a></li>
+                                            <li><a href="#">확진환자 이동경로</a></li>
+                                        </ul>
+                                    </div></div>                             
+                                </li>
+                                <li class="on"><a href="#">뉴스 &amp; 이슈</a>
+                                    <div class="g_fixsub" style="display: block;"><div>
+                                        <ul>
+                                            <li class="on"><a href="#">카드뉴스</a></li>
+                                            <li><a href="#">보도자료</a></li>
+                                            <li><a href="#">코로나19 팩트 &amp; 이슈체크</a></li>
+                                            <li><a href="#">공적마스크 공급현황</a></li>
+                                                                                    
+                                        </ul>
+                                    </div></div>
+                                </li>                            
+                                <li><a href="#">홍보자료 &amp; FAQ</a>
+                                    <div class="g_fixsub" style="display: none;"><div>
+                                        <ul>
+                                            <li><a href="#">홍보자료</a></li>
+                                            <li><a href="#">FAQ</a></li>
+                                        </ul>
+                                    </div></div>
+                                </li>
+                                <li class=""><a href="#">피해지원정책</a>
+                                    <div class="g_fixsub" style="display: none;"><div>
+                                        <ul>
+                                            <li><a href="#">일반인(대국민)</a></li>
+                                            <li><a href="#">취약계층</a></li>
+                                            <li><a href="#">소상공인 및 기업</a></li>
+                                            <li><a href="#">의료기관</a></li>
+                                            <li><a href="#">발생지역</a></li>
+                                            <li><a href="#">기타</a></li>                    
+                                        </ul>
+                                    </div></div>
+                                </li>                            
+                                <li class=""><a href="#">공지사항</a>
+                                    <div class="g_fixsub" style="display: none;"><div>
+                                        <ul>
+                                            <li><a href="#">일반인</a></li>
+                                            <li><a href="#">입국자 및 해외여행객</a></li>
+                                            <li><a href="#">자가격리자</a></li>
+                                            <li><a href="#">의료기관</a></li>
+                                            <li><a href="#">집단 및 다중이용시설</a></li>
+                                            <li><a href="#">지자체</a></li>
+                                            <li><a href="#">기업 및 시장</a></li>
+                                            <li><a href="#">지역별 사회적 거리 두기 단계</a></li>
+                                        </ul>
+                                    </div></div>
+                                </li>
+                                <li class=""><a href="/#">사회적 거리 두기</a>
+                                    <div class="g_fixsub" style="display: none;"><div>
+                                        <ul>
+                                            <li><a href="#">거리 두기 체계 개요</a></li>
+                                            <li><a href="#">단계별 실행방안</a></li>
+                                            <li><a href="#">주요 시설·활동 조치사항</a></li>
+                                            <li><a href="#">생활 속 거리 두기 기본수칙</a></li>
+                                            <li><a href="#">생활 속 거리 두기 세부지침</a></li>
+                                            <li><a href="#">지역별 거리 두기 단계 현황</a></li>  
+                                        </ul>
+                                    </div></div>
+                                </li>
+                                <li><a href="#">마스크 착용</a>
+                                    <div class="g_fixsub" style="display: none;"><div>
+                                        <ul>
+                                            <li><a href="#">지침·제도</a></li>
+                                            <li><a href="#">FAQ</a></li>
+                                            <li><a href="#">홍보자료</a></li>
+                                            <li><a href="#">시도별 현황</a></li>
+                                        </ul>
+                                    <div></div>
+                                </div></div></li>                            
+                            </ul>
+                        </div>
+                        
+                         <!--검색-->
+                        <div class="p_search">
+                            <form id="searchForm1" name="searchForm" action="/search/search.jsp" method="post">
+                                <input type="hidden" id="pageNum" name="pageNum" value="1">
+                                <input type="hidden" id="searchTab" name="searchTab" value="TOTAL">
+                                <input type="hidden" id="order" name="order" value="weight">
+                                <input type="hidden" id="sDate" name="sDate" value="">
+                                <input type="hidden" id="eDate" name="eDate" value="">
+                                <input type="hidden" id="searchRange" name="searchRange" value="total">
+                                <input type="hidden" id="dateRange" name="dateRange" value="all">
+                                <div class="n_search">
+                                    <label for="searchTerm" class="hdn">검색어</label>
+                                    <input type="text" name="searchTerm" id="searchTerm" value="" placeholder="검색어를 입력하세요.">
+                                    <input type="submit" class="btn_search" onclick="search( 'searchForm1' );"><span class="hdn">검색</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <!-- 게시판 목록 -->
+    
+    <section class="one">
+        <div class="report">
+            <div>
+                <!--위쪽 제목-->
+                <div class="sub_top">
+                    <!-- 서브제목 -->
+                    <div class="st_navigation">
+                        <ul>
+                            <li><a href="/"><span class="hdn">홈</span></a></li>
+                            <li><a href="#" >뉴스 &amp; 이슈</a></li>
+                            <li><a href="#">카드뉴스</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="st_title">
+                        <!-- 큰제목 -->
+                        <div class="fl_l">
+                            <h3>카드뉴스</h3>
+                        </div>
+                    </div>
+                </div>
+              <div class="board_view">
+                <div class="bv_top">
+                    <div class="bv_ttl">
+                        <h4>{{news.title}}</h4>
+                    </div>
+                    <div class="bv_category">
+                        <ul>
+                            <li><span class="bvc_ttl">담당 :</span><span class="bvc_detail">{{news.manager}}</span></li>
+                            <li><span class="bvc_ttl">작성일 :</span><span class="bvc_detail">{{news.day}}</span> </li>
+                        </ul>
+                    </div>
+                </div>
+               
+
+                <div class="bv_content">
+                    <div class="bvc_txt">
+                        <p></p>{%if news.cardnews%}
+                        <p>&nbsp;<img src="{{news.cardnews.url}}
+                            " style="height: 1400px; width: 1100px"></p>
+                       
+                        <p></p>
+                    </div>
+                </div>{%endif%}
+                <!--첨부파일-->
+                <!--공공누리 유형-->
+                <div class="copykogl type4">
+                    <div class="copyimg"><span class="hdn">공공누리 제4유형</span></div>
+                    <p class="copytext">
+                        코로나바이러스감염증-19가 창작한 <strong>"[카드뉴스] 중앙방역대책본부 일일 국내발생현황 브리핑(21.2.4.)"</strong> 저작물은
+                        공공누리의 <strong>제4유형 (출처표시, 상업적 이용금지, 변경 금지)</strong>
+                        에 따라 이용할 수 있습니다.<br>
+                        텍스트 데이터는 공공누리 유형조건에 따라 자유이용이 가능합니다. 단, 사진, 이미지, 일러스트, 동영상 등의 일부 자료는 코로나바이러스감염증-19가 저작권 전부를 갖고 있지 아니하므로, 자유롭게 이용하기 위해서는 반드시 해당 저작권자의 허락을 받으셔야 합니다.
+                    </p>
+                </div>
+
+                <!--이전글 다음글-->
+               <div class="page_skip">
+                    <ul>
+                        <li>
+                            <span class="ps_ttl">이전글</span>
+                            <p class="ps_detail">
+                                <a href="javascript:void(0);" onclick="fn_tcm_boardView('/tcmBoardView.do','3','31','4750','311',  'BDC' );">설 연휴 이동 감소 및 방역 강화를 위한 설 특별 교통대책을 시행합니다(2.10. ~ 2.14.)</a>
+                            </p>
+                        </li>
+                        <li>
+                            <span class="ps_ttl">다음글</span>
+                            <p class="ps_detail">다음글이 없습니다.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="s_btn">
+                    <a href="news.html" class="tag tag_lg tag_black"><span>목록</span></a>
+    </div></div></div></div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer_lay">
+        <div class="footer">
+            <div class="f_top">
+                <div>
+                    <div class="ft_left">
+                        <div class="f_relate">
+                            <ul>
+                                <li>
+                                    <a href="#"><span>질병관리청 관련기관</span><em>바로가기</em></a>
+                                    <div class="sub_menu">
+                                        <ul>
+                                            <li><a href="http://www.kdca.go.kr" target="_blank" rel="noopener noreferrer" title="질병관리청  [새창]">질병관리청<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.cdc.gov/" target="_blank" rel="noopener noreferrer" title="미국질병통제예방센터[CDC]  [새창]">미국질병통제예방센터[CDC]<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.ecdc.europa.eu/" target="_blank" rel="noopener noreferrer" title="유럽질병통제예방센터[ECDC] [새창]">유럽질병통제예방센터[ECDC]<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.who.int/" target="_blank" rel="noopener noreferrer" title="세계보건기구[WHO] [새창]">세계보건기구[WHO]<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.nih.go.jp/" target="_blank" rel="noopener noreferrer" title="일본감염병연구소[NIID] [새창]">일본감염병연구소[NIID]<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.hpa.org.uk/" target="_blank" rel="noopener noreferrer" title="영국공공보건국[PHE] [새창]">영국공공보건국[PHE]<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span>보건환경연구원 </span><em>바로가기</em></a>
+                                        <div class="sub_menu">
+                                            <ul>
+                                                <li><a href="http://news.seoul.go.kr/welfare/life_health" target="_blank" rel="noopener noreferrer" title="서울특별시 보건환경연구원 [새창]">서울특별시 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.busan.go.kr/ihe/index" target="_blank" rel="noopener noreferrer" title="부산광역시 보건환경연구원 [새창]">부산광역시 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.daegu.go.kr/Health/" target="_blank" rel="noopener noreferrer" title="대구광역시 보건환경연구원 [새창]">대구광역시 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://ecopia.incheon.go.kr" target="_blank" rel="noopener noreferrer" title="인천광역시 보건환경연구원 [새창]">인천광역시 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://hevi.gwangju.go.kr/" target="_blank" rel="noopener noreferrer" title="광주광역시 보건환경연구원 [새창]">광주광역시 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.daejeon.go.kr/hea/index.do" target="_blank" rel="noopener noreferrer" title="대전광역시 보건환경연구원 [새창]">대전광역시 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.ulsan.go.kr/uihe/index" target="_blank" rel="noopener noreferrer" title="울산광역시 보건환경연구원 [새창]">울산광역시 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://gg.go.kr/gg_health" target="_blank" rel="noopener noreferrer" title="경기도 보건환경연구원 [새창]">경기도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.gihe.re.kr/" target="_blank" rel="noopener noreferrer" title="강원도 보건환경연구원 [새창]">강원도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://here.cb21.net/" target="_blank" rel="noopener noreferrer" title="충청북도 보건환경연구원 [새창]">충청북도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.chungnam.go.kr/healthenvMain.do" target="_blank" rel="noopener noreferrer" title="충청남도 보건환경연구원 [새창]">충청남도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://jihe.jeonbuk.go.kr/" target="_blank" rel="noopener noreferrer" title="전라북도 보건환경연구원 [새창]">전라북도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.jihe.go.kr/" target="_blank" rel="noopener noreferrer" title="전라남도 보건환경연구원 [새창]">전라남도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.gb.go.kr/Main/open_contents/section/inhen/index.html" target="_blank" rel="noopener noreferrer" title="경상북도 보건환경연구원 [새창]">경상북도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://www.gyeongnam.go.kr/knhe/index.gyeong" target="_blank" rel="noopener noreferrer" title="경상남도 보건환경연구원 [새창]">경상남도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="http://hei.jeju.go.kr/" target="_blank" rel="noopener noreferrer" title="제주특별자치도 보건환경연구원 [새창]">제주특별자치도 보건환경연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                                <li><a href="https://www.sejong.go.kr/vri.do" target="_blank" rel="noopener noreferrer" title="세종시 보건환경 연구원 [새창]">세종시 보건환경 연구원<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span>관련기관 </span><em>바로가기</em></a>
+                                        <div class="sub_menu">
+                                            <ul>
+                                                <li><a href="https://kosis.kr/covid/covid_index.do" target="_blank" rel="noopener noreferrer" title="통계청 코로나19 [새창]">통계청 코로나19<i class="ico_window"><span class="hdn">새창</span></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f_bottom">
+                    <div>
+                        <div class="fb_left">
+                            <div class="f_navigation">
+                                <ul>
+                                    <li class="txt_private"><strong>신고상담</strong></li>
+                                    <li>보건소</li>
+                                    <li class="cdcinfo">질병관리청 콜센터 1339</li>
+                                    <li>지역번호 + 120</li>
+                                    <li>지역번호 + 114</li>
+                                </ul>
+                            </div>
+                            <div class="f_copyright">
+                                <p>Copyright ⓒ By MOHW. All Rights Reserved.</p>
+                            </div>
+                        </div>
+                        <div class="fb_right">
+                            <div class="f_open">
+                                <a href="http://www.kogl.or.kr/" target="_blank" title="OPEN 공공누리 공공저작물 자유이용허락 사이트 이동 - 새창"><span class="hdn">OPEN 공공누리 공공저작물 자유이용허락</span><i class="ico_window"><span class="hdn">새창</span></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </footer>
+</body>
+
+</html>
