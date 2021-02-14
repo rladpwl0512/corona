@@ -26,11 +26,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', copycatApp.views.main, name="main"),
     path('news/',include('copycatApp.urls',namespace="copycatApp")),
-
+    
     #accounts 앱과 연결 
     path('account/', include('accounts.urls')),
-     #소셜로그인 구현
+    #소셜로그인 구현
     path('accounts/', include('allauth.urls')),
-    
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,8 +5,6 @@ from  .models import News
 def main(request):
     return render(request, 'main.html')
 
-
-#하은 
 def news(request):
     # 모든 news를 가져와 newsslist에 저장합니다.
     newslist = News.objects.all().order_by('-number')

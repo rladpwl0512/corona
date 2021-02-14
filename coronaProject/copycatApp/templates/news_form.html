@@ -71,7 +71,7 @@
                 .two{
                     width: 1150px;
                     height: 300px;
-                     padding-left: 5px;
+                    padding-left: 5px;
                     box-sizing: border-box;
                     /*background: orange;*/
                     margin-left: 250px;
@@ -86,7 +86,7 @@
                     background-color: #708090;
                     padding-bottom: -100px;
                 }
-                 
+
     /* 전체적용 */
                 div,span,p,a,em,strong,i,ul,li, h1, form, label{margin:0;padding:0;border:0;font-size:100%;font:inherit;}
                 ul{list-style:none;}
@@ -334,7 +334,6 @@
                 .header .n_search input[type="submit"]{margin:0;padding:0;border:0 none;}
                 .header .n_search input[type="submit"]:hover{cursor:pointer;}
                 .header .n_search .btn_search{display:block;position:absolute;right:0;top:12px;width:36px;height:36px;background:url(http://ncov.mohw.go.kr/static/image/header/ico_search.png) no-repeat center;background-color:#0b7599;color:transparent;}
-               
                 .header > div{width:1180px;height:auto;margin:0 auto;}
                 .header .h_left{float:left;}
                 .header .h_right{float:right;width:100%;}
@@ -463,7 +462,7 @@
                         <li class="post"><a href="https://post.naver.com/my.nhn?memberNo=20182790" target="_blank" title="질병관리청 포스트 새창">포스트<i class="ico_window"><span class="hdn">새창</span></i></a></li>
                         <li class="twitter"><a href="http://twitter.com/koreadca" target="_blank" title="질병관리청 트위터 새창">트위터<i class="ico_window"><span class="hdn">새창</span></i></a></li>
                     </ul>
-                     <ul class="country">
+                    <ul class="country">
                         {% if user.is_authenticated %} <!--만약 로그인 되어있으면 -->
                             {{user.username}}님
                             <li><a href="{% url 'logout' %}">로그아웃<i class="ico_window"><span class="hdn">새창</span></i></a></li>
@@ -474,9 +473,9 @@
                 </div>
             </div>
         </div>
-    </header>
-   
-   <!-- 메뉴바(navbar) -->
+    </header> 
+
+    <!-- 메뉴바(navbar) -->
     <div class="menubar_lay"> 
         <div id="header" class="header">
                 <div>
@@ -594,8 +593,7 @@
                 </div>
     </div>
 
-    <!-- 게시판 목록 -->
-    
+    <!-- 게시판 목록 -->  
     <section class="one">
         <div class="report">
             <div>
@@ -617,7 +615,7 @@
                         </div>
                     </div>
                 </div>
-              <div class="board_view">
+            <div class="board_view">
                 <div class="bv_top">
                     <div class="bv_ttl">
                         <h4>{{news.title}}</h4>
@@ -629,14 +627,12 @@
                         </ul>
                     </div>
                 </div>
-               
 
                 <div class="bv_content">
                     <div class="bvc_txt">
                         <p></p>{%if news.cardnews%}
                         <p>&nbsp;<img src="{{news.cardnews.url}}
-                            " style="height: 1400px; width: 1100px"></p>
-                       
+                        " style="height: 1400px; width: 1100px"></p>
                         <p></p>
                     </div>
                 </div>{%endif%}
@@ -653,7 +649,7 @@
                 </div>
 
                 <!--이전글 다음글-->
-               <div class="page_skip">
+                <div class="page_skip">
                     <ul>
                         <li>
                             <span class="ps_ttl">이전글</span>
